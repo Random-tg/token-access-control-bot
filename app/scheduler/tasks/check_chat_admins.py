@@ -107,7 +107,6 @@ async def demote_old_holders(bot: Bot, sessionmaker: async_sessionmaker, old_hol
         member = await MemberDB.get_by_filter(sessionmaker, user_id=holder["user_id"], chat_id=holder["chat_id"])
         if member:
             await remove_admin_role(bot, member)
-            await asyncio.sleep(1)
 
 
 async def promote_top_holders(bot: Bot, sessionmaker: async_sessionmaker, top_holders: List[UserHolder]) -> List[dict]:
@@ -118,7 +117,6 @@ async def promote_top_holders(bot: Bot, sessionmaker: async_sessionmaker, top_ho
             title = f"{int(holder.token_amount)} $RANDOM"
             await set_admin_role(bot, member, title)
             new_holders.append({"user_id": member.user_id, "chat_id": member.chat_id})
-            await asyncio.sleep(1)
 
     return new_holders
 
@@ -130,12 +128,13 @@ async def set_admin_role(bot: Bot, member: MemberDB, title: str) -> None:
             user_id=member.user_id,
             can_pin_messages=True,
         )
-        await asyncio.sleep(0.2)
+        await asyncio.sleep(1)
         await bot.set_chat_administrator_custom_title(
             chat_id=member.chat_id,
             user_id=member.user_id,
             custom_title=title,
         )
+        await asyncio.sleep(3)
 
 
 async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
@@ -145,3 +144,4 @@ async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
             user_id=member.user_id,
             can_pin_messages=False,
         )
+        await asyncio.sleep(3)
