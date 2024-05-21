@@ -55,6 +55,21 @@ class Scheduler:
             return None
         return self.scheduler.remove_job(job_id)
 
+    def add_check_chat_admins(self) -> Job:
+        """
+        Add a job to check chat admins.
+
+        :return: The added Job object.
+        """
+        job_id = tasks.check_chat_admins.__name__
+        self._delete_job(job_id)
+        return self.scheduler.add_job(
+            func=tasks.check_chat_admins,
+            trigger="interval",
+            minutes=10,
+            id=job_id,
+        )
+
     def add_update_token_holders(self) -> Job:
         """
         Add a job to update token holders.
@@ -95,6 +110,7 @@ class Scheduler:
 
         self.add_update_token_holders()
         self.add_check_chats_members()
+        self.add_check_chat_admins()
 
     def shutdown(self) -> None:
         """
@@ -102,6 +118,7 @@ class Scheduler:
         """
         self._delete_job(tasks.update_token_holders.__name__)
         self._delete_job(tasks.check_chats_members.__name__)
+        self._delete_job(tasks.check_chat_admins.__name__)
 
         for db, scheduler in self.schedulers.items():
             scheduler.shutdown()
