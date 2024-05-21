@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import Sequence, List
 
 from aiogram import Bot
-from aiogram.exceptions import TelegramBadRequest
+from aiogram.exceptions import TelegramBadRequest, TelegramRetryAfter
 from pytonapi.utils import userfriendly_to_raw
 from sqlalchemy.ext.asyncio import async_sessionmaker
 
@@ -106,7 +106,11 @@ async def demote_old_holders(bot: Bot, sessionmaker: async_sessionmaker, old_hol
     for holder in old_holders.get("holders", []):
         member = await MemberDB.get_by_filter(sessionmaker, user_id=holder["user_id"], chat_id=holder["chat_id"])
         if member:
-            await remove_admin_role(bot, member)
+            try:
+                await remove_admin_role(bot, member)
+            except TelegramRetryAfter as e:
+                await asyncio.sleep(e.retry_after + 5)
+                await remove_admin_role(bot, member)
 
 
 async def promote_top_holders(bot: Bot, sessionmaker: async_sessionmaker, top_holders: List[UserHolder]) -> List[dict]:
@@ -115,7 +119,13 @@ async def promote_top_holders(bot: Bot, sessionmaker: async_sessionmaker, top_ho
         member = await MemberDB.get_by_filter(sessionmaker, user_id=holder.user_id, chat_id=holder.chat_id)
         if member:
             title = f"{int(holder.token_amount)} $RANDOM"
-            await set_admin_role(bot, member, title)
+
+            try:
+                await set_admin_role(bot, member, title)
+            except TelegramRetryAfter as e:
+                await asyncio.sleep(e.retry_after + 5)
+                await set_admin_role(bot, member, title)
+
             new_holders.append({"user_id": member.user_id, "chat_id": member.chat_id})
 
     return new_holders
@@ -128,13 +138,22 @@ async def set_admin_role(bot: Bot, member: MemberDB, title: str) -> None:
             user_id=member.user_id,
             can_pin_messages=True,
         )
-        await asyncio.sleep(1)
-        await bot.set_chat_administrator_custom_title(
-            chat_id=member.chat_id,
-            user_id=member.user_id,
-            custom_title=title,
-        )
-        await asyncio.sleep(3)
+        await asyncio.sleep(5)
+
+    try:
+        await set_admin_title(bot, member, title)
+    except TelegramRetryAfter as e:
+        await asyncio.sleep(e.retry_after + 5)
+        await set_admin_title(bot, member, title)
+
+
+async def set_admin_title(bot: Bot, member: MemberDB, title: str) -> None:
+    await bot.set_chat_administrator_custom_title(
+        chat_id=member.chat_id,
+        user_id=member.user_id,
+        custom_title=title,
+    )
+    await asyncio.sleep(5)
 
 
 async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
@@ -144,4 +163,4 @@ async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
             user_id=member.user_id,
             can_pin_messages=False,
         )
-        await asyncio.sleep(3)
+        await asyncio.sleep(5)
