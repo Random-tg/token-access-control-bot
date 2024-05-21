@@ -57,33 +57,32 @@ TEXT_MESSAGES = {
         "outdated_text": "...",
 
         "main_menu": (
-            f"{hide_link('https://telegra.ph//file/db9c5c3febe75811e41af.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "🤖 <b>Добро пожаловать!</b>\n\n"
-            "Я - твой личный проводник в мире приватных чатов. "
-            "Моя главная задача - предоставить тебе доступ к нашим приватным чатам, "
-            "опираясь на наличие у тебя соответствующих токенов.\n\n"
-            "<blockquote><b>Приватные чаты:</b>\n{chats}\n"
-            "<b>Необходимые токены:</b>\n{tokens}</blockquote>\n\n"
+
+            "Для доступа в приватный чат Diamond Hands необходимо подтвердить наличие токенов $RANDOM на вашем кошельке.\n\n"
+            "<blockquote><b>Приватный чат:</b>\n{chats}\n"
+            "<b>Необходимо держать на кошельке:</b>\n{tokens}</blockquote>\n\n"
             "Жми на <b>Проверить наличие доступа</b>, чтобы узнать, будешь ли ты допущен!\n\n"
             "<b>Подключен к:</b> {wallet}"
         ),
         "select_language": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "👋 <b>Привет!</b>\n\n"
             "Выбери язык:"
         ),
         "change_language": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Выбери язык:</b>"
         ),
         "deny_access": (
-            f"{hide_link('https://telegra.ph//file/ceec89ba75c903210411c.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "🚫 <b>Доступ запрещен</b>\n\n"
             "К сожалению, не обнаружены необходимые токены в твоем кошельке.\n\n"
             "Не расстраивайся, ты можешь <b>приобрести токены, перейдя по кнопкам</b> ниже и повторить попытку."
         ),
         "allow_access": (
-            f"{hide_link('https://telegra.ph//file/6b03c59182d959cddeb02.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "🎉 <b>Поздравляем!</b>\n\n"
             "Тебе открыт доступ к нашим приватным чатам.\n\n"
             "<b>Переходи по кнопкам</b> ниже и подавай заявку на вступление, я сразу же их одобрю!"
@@ -91,30 +90,30 @@ TEXT_MESSAGES = {
 
         "connect_wallet": (
             f"<a href='https://ton.org/ru/wallets?locale=ru&filters[wallet_features][slug][$in]=dapp-auth&pagination[limit]=-1'>Установить кошелек</a>\n\n"
-            "<b>Подключи свой {wallet_name}!</b>\n\n"
+            "<b>Для доступа в приватный чат холдеров $RANDOM, подключи свой {wallet_name}!</b>\n\n"
             "Отсканируй с помощью мобильного кошелька:"
         ),
         "connect_wallet_proof_wrong": (
-            f"{hide_link('https://telegra.ph//file/a4ddc111ff41692ad5200.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Предупреждение</b>\n\n"
             "Подпись кошелька поддельна или истекло время ожидания подключения."
         ),
         "connect_wallet_timeout": (
-            f"{hide_link('https://telegra.ph//file/a4ddc111ff41692ad5200.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Предупреждение</b>\n\n"
             "Время ожидания подключения истекло."
         ),
 
         "admin_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Панель администратора</b>\n\nВыберите действие:"
         ),
         "chats_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Меню приватных чатов</b>\n\nВыберите действие:"
         ),
         "chat_info": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "• <b>Информация о приватном чате</b>\n\n"
             "• <b>ID:</b>\n"
             "<blockquote>{chat_id}</blockquote>\n"
@@ -128,11 +127,11 @@ TEXT_MESSAGES = {
             "<blockquote>{chat_created_at}</blockquote>"
         ),
         "tokens_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Меню токенов</b>\n\nВыберите действие:"
         ),
         "token_info": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "• <b>Информация о токене</b>\n\n"
             "• <b>Тип:</b>\n"
             "<blockquote>{token_type}</blockquote>\n"
@@ -158,11 +157,11 @@ TEXT_MESSAGES = {
         "token_edit_amount": "<b>Введите новую сумму токена</b> для доступа к приватному чату:",
         "token_send_amount_error": "Неверная сумма токена!",
         "admins_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Меню администраторов</b>\n\nВыберите действие:"
         ),
         "admin_info": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "• <b>Информация об администраторе</b>\n\n"
             "• <b>ID:</b>\n"
             "<blockquote>{admin_id}</blockquote>\n"
@@ -187,33 +186,32 @@ TEXT_MESSAGES = {
         "outdated_text": "...",
 
         "main_menu": (
-            f"{hide_link('https://telegra.ph//file/db9c5c3febe75811e41af.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "🤖 <b>Welcome!</b>\n\n"
-            "I'm your personal guide in the world of private chats. "
-            "My main task is to provide you with access to our private chats, "
-            "based on your possession of the corresponding tokens.\n\n"
+
+            "To access the private chat Diamond Hands, you must confirm the presence of $RANDOM tokens in your wallet.\n\n"
             "<blockquote><b>Private Chats:</b>\n{chats}\n"
             "<b>Required Tokens:</b>\n{tokens}</blockquote>\n\n"
             "Click on <b>Check access availability</b> to find out if you'll be admitted!\n\n"
             "<b>Connected to:</b> {wallet}"
         ),
         "select_language": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "👋 <b>Hello!</b>\n\n"
             "Choose a language:"
         ),
         "change_language": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Choose a language:</b>"
         ),
         "deny_access": (
-            f"{hide_link('https://telegra.ph//file/ceec89ba75c903210411c.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "🚫 <b>Access Denied</b>\n\n"
             "Unfortunately, I did not detect the required tokens in your wallet.\n\n"
             "Don't worry, you can <b>purchase tokens by clicking the buttons</b> below and try again."
         ),
         "allow_access": (
-            f"{hide_link('https://telegra.ph//file/6b03c59182d959cddeb02.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "🎉 <b>Congratulations!</b>\n\n"
             "You have access to our private chats.\n\n"
             "<b>Click on the buttons</b> below and submit an application to join, "
@@ -237,15 +235,15 @@ TEXT_MESSAGES = {
         ),
 
         "admin_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Administrator Panel</b>\n\nSelect action:"
         ),
         "chats_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Private Chats Menu</b>\n\nSelect action:"
         ),
         "chat_info": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "• <b>Private Chat Information</b>\n\n"
             "• <b>ID:</b>\n"
             "<blockquote>{chat_id}</blockquote>\n"
@@ -259,11 +257,11 @@ TEXT_MESSAGES = {
             "<blockquote>{chat_created_at}</blockquote>"
         ),
         "tokens_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Tokens Menu</b>\n\nSelect action:"
         ),
         "token_info": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "• <b>Token Information</b>\n\n"
             "• <b>Type:</b>\n"
             "<blockquote>{token_type}</blockquote>\n"
@@ -291,11 +289,11 @@ TEXT_MESSAGES = {
         "token_edit_amount": "<b>Enter the new token amount</b> to access the private chat:",
         "token_send_amount_error": "Invalid token amount!",
         "admins_menu": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "<b>Administrators Menu</b>\n\nSelect action:"
         ),
         "admin_info": (
-            f"{hide_link('https://telegra.ph//file/aaba319da09f60e6def03.jpg')}"
+            f"{hide_link('https://telegra.ph//file/4604b35fd4cc58e4ffe9f.mp4')}"
             "• <b>Administrator Information</b>\n\n"
             "• <b>ID:</b>\n"
             "<blockquote>{admin_id}</blockquote>\n"
