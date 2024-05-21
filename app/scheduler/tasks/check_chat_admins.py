@@ -16,6 +16,7 @@ from app.config import BASE_DIR
 from app.db.models import ChatDB, TokenDB, MemberDB
 
 IGNORE_WALLETS = [
+    "UQBe_hx43tkDqa4Fay6uKw5iSTHPmWpAdNiqEBzXH52t98nc"  # noqa
 ]
 
 
