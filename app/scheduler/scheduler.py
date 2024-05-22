@@ -66,7 +66,7 @@ class Scheduler:
         return self.scheduler.add_job(
             func=tasks.check_chat_admins,
             trigger="interval",
-            minutes=15,
+            minutes=60,
             id=job_id,
         )
 

@@ -109,7 +109,7 @@ async def demote_old_holders(bot: Bot, sessionmaker: async_sessionmaker, old_hol
             try:
                 await remove_admin_role(bot, member)
             except TelegramRetryAfter as e:
-                await asyncio.sleep(e.retry_after + 5)
+                await asyncio.sleep(e.retry_after + 1)
                 await remove_admin_role(bot, member)
 
 
@@ -123,7 +123,7 @@ async def promote_top_holders(bot: Bot, sessionmaker: async_sessionmaker, top_ho
             try:
                 await set_admin_role(bot, member, title)
             except TelegramRetryAfter as e:
-                await asyncio.sleep(e.retry_after + 5)
+                await asyncio.sleep(e.retry_after + 1)
                 await set_admin_role(bot, member, title)
 
             new_holders.append({"user_id": member.user_id, "chat_id": member.chat_id})
@@ -138,12 +138,12 @@ async def set_admin_role(bot: Bot, member: MemberDB, title: str) -> None:
             user_id=member.user_id,
             can_pin_messages=True,
         )
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
 
     try:
         await set_admin_title(bot, member, title)
     except TelegramRetryAfter as e:
-        await asyncio.sleep(e.retry_after + 5)
+        await asyncio.sleep(e.retry_after + 1)
         await set_admin_title(bot, member, title)
 
 
@@ -153,7 +153,7 @@ async def set_admin_title(bot: Bot, member: MemberDB, title: str) -> None:
         user_id=member.user_id,
         custom_title=title,
     )
-    await asyncio.sleep(5)
+    await asyncio.sleep(1)
 
 
 async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
@@ -163,4 +163,4 @@ async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
             user_id=member.user_id,
             can_pin_messages=False,
         )
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
