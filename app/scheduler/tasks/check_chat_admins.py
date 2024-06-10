@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import logging
 from contextlib import suppress
 from dataclasses import dataclass
 from typing import Sequence, List
@@ -148,12 +149,16 @@ async def set_admin_role(bot: Bot, member: MemberDB, title: str) -> None:
 
 
 async def set_admin_title(bot: Bot, member: MemberDB, title: str) -> None:
-    await bot.set_chat_administrator_custom_title(
-        chat_id=member.chat_id,
-        user_id=member.user_id,
-        custom_title=title,
-    )
-    await asyncio.sleep(1)
+    try:
+        await bot.set_chat_administrator_custom_title(
+            chat_id=member.chat.id,
+            user_id=member.user.id,
+            custom_title=title
+        )
+        await asyncio.sleep(1)
+    except TelegramBadRequest as e:
+        logging.error(e)
+        raise
 
 
 async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
