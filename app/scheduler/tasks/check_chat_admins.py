@@ -158,7 +158,6 @@ async def set_admin_title(bot: Bot, member: MemberDB, title: str) -> None:
         await asyncio.sleep(1)
     except TelegramBadRequest as e:
         logging.error(e)
-        raise
 
 
 async def remove_admin_role(bot: Bot, member: MemberDB) -> None:
