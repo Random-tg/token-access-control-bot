@@ -151,9 +151,9 @@ async def set_admin_role(bot: Bot, member: MemberDB, title: str) -> None:
 async def set_admin_title(bot: Bot, member: MemberDB, title: str) -> None:
     try:
         await bot.set_chat_administrator_custom_title(
-            chat_id=member.chat.id,
-            user_id=member.user.id,
-            custom_title=title
+            chat_id=member.chat_id,
+            user_id=member.user_id,
+            custom_title=title,
         )
         await asyncio.sleep(1)
     except TelegramBadRequest as e:
