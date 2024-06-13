@@ -32,7 +32,7 @@ async def user_is_holder(user: UserDB, tokens: Sequence[TokenDB]):
             if user and user.wallet_address
             else None
         )
-        user_min_amount = amount_to_nano(get_tokens_required(user))
+        user_min_amount = get_tokens_required(user)
         if token.holders and token.holders.get(member_address, 0) >= user_min_amount:
             member_checks.append(True)
         else:
