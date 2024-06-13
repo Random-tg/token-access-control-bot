@@ -1,13 +1,32 @@
 import os
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Union
 
 import environs
-
 from environs import Env
 
 BASE_DIR = Path(__file__).resolve().parent
+
+# Пороговые значения токенов
+_TOKEN_CHECK_THRESHOLDS = [
+    # Все кто зарегистрирован до 13.06.2024 требуют 1000 токенов
+    ("13.06.2024", 1000),
+    # Все кто зарегистрирован до 13.06.2025 требуют 1500 токенов
+    ("13.06.2025", 1500),
+    # Все кто зарегистрирован до 13.06.2026 требуют 2000 токенов
+    ("13.06.2026", 2000),
+    # Все кто зарегистрирован до 13.06.2027 требуют 2500 токенов
+    ("13.06.2027", 2500),
+    # Все кто зарегистрирован до и после 13.06.2028 требуют 3000 токенов
+    ("13.06.2028", 3000),
+]
+
+TOKEN_CHECK_THRESHOLDS = [
+    (datetime.strptime(date, "%d.%m.%Y"), tokens)
+    for date, tokens in _TOKEN_CHECK_THRESHOLDS
+]
 
 
 @dataclass

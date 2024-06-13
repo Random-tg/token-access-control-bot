@@ -4,9 +4,23 @@ from typing import Sequence
 
 from aiogram import Bot
 from aiogram.exceptions import TelegramBadRequest
-from pytonapi.utils import userfriendly_to_raw
+from pytonapi.utils import userfriendly_to_raw, amount_to_nano
 
+from app.config import TOKEN_CHECK_THRESHOLDS
 from app.db.models import MemberDB, TokenDB, UserDB
+
+
+def get_tokens_required(user: UserDB) -> int:
+    user_date = user.created_at
+
+    if user_date < TOKEN_CHECK_THRESHOLDS[0][0]:
+        return TOKEN_CHECK_THRESHOLDS[0][1]
+
+    for threshold_date, tokens in TOKEN_CHECK_THRESHOLDS:
+        if user_date < threshold_date:
+            return tokens
+
+    return TOKEN_CHECK_THRESHOLDS[-1][1]
 
 
 async def user_is_holder(user: UserDB, tokens: Sequence[TokenDB]):
@@ -18,7 +32,8 @@ async def user_is_holder(user: UserDB, tokens: Sequence[TokenDB]):
             if user and user.wallet_address
             else None
         )
-        if token.holders and token.holders.get(member_address, 0) >= token.min_amount:
+        user_min_amount = amount_to_nano(get_tokens_required(user))
+        if token.holders and token.holders.get(member_address, 0) >= user_min_amount:
             member_checks.append(True)
         else:
             member_checks.append(False)

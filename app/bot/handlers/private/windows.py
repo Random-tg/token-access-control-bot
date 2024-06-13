@@ -3,7 +3,7 @@ from aiogram_tonconnect import ATCManager
 from aiogram_tonconnect.tonconnect.models import AccountWallet
 
 from app.bot.manager import Manager, SendMode
-from app.bot.utils import keyboards
+from app.bot.utils import keyboards, get_tokens_required
 from app.bot.utils.states import UserState
 from app.bot.utils.urls import NFTBuyUrl, JettonBuyUrl, TonviewerUrl
 from app.db.models import UserDB, ChatDB, TokenDB
@@ -50,15 +50,19 @@ class Window:
         chats = await ChatDB.all(manager.sessionmaker)
         tokens = await TokenDB.all(manager.sessionmaker)
 
+        token = tokens[0]
+        token.min_amount = get_tokens_required(manager.user_db)
+
         text = manager.text_message.get("main_menu").format(
             wallet=TonviewerUrl(wallet_address).hlink_short,
             chats="\n".join([f"• {hcode(chat.name)}" for chat in chats]),
             tokens="\n".join(
                 [
-                    f"• {NFTBuyUrl(token.address, token.name).hlink_name} - {hcode(token.min_amount_str)}"
+                    f"• {NFTBuyUrl(token.address, token.name).hlink_name} "
+                    f"- {hcode(token.min_amount_str)}"
                     if token.type == TokenDB.Type.NFTCollection else
-                    f"• {JettonBuyUrl(token.address, token.name).hlink_name} - {hcode(token.min_amount_str)}"
-                    for token in tokens
+                    f"• {JettonBuyUrl(token.address, token.name).hlink_name} "
+                    f"- {hcode(token.min_amount_str)}"
                 ]
             )
         )
